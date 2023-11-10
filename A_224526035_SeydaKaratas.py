@@ -12,9 +12,9 @@ def doviz_kuru_hesapla():
     sonuc = 0
 
     if secilen_kur == "USD":
-        sonuc = miktar * usdkur
+        sonuc = miktar / usdkur
     elif secilen_kur == "EURO":
-        sonuc = miktar * eurokur
+        sonuc = miktar / eurokur
 
     lbl_sonuc.config(text=f"{miktar} TL, {sonuc:.2f} {secilen_kur} ")
     
