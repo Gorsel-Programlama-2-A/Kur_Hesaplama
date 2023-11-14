@@ -1,0 +1,61 @@
+import tkinter as tk
+
+def kur_hesapla(döviz_çifti, miktar, kur_turu):
+    kur_verileri = {
+       'USD/TRY' : {'alış' : 29.00 , 'satış' : 28.00},
+        'EURO/TRY' : {'alış' : 32.00 , 'satış' : 31.00},
+        'USD/EURO' : {'alış' : 1.00 , 'satış' : 0.85},
+        'PESO/TRY' : {'alış' : 1.80 , 'satış' : 1.60},
+        'STERLİN/TRY' : {'alış' : 36.00 , 'satış' : 35.00},
+    }
+
+    if döviz_çifti not in kur_verileri:
+        return "Geçersiz döviz çifti."
+
+    kur = kur_verileri[döviz_çifti][kur_turu]
+    sonuc = miktar * kur
+    return f"{miktar} {döviz_çifti} için {kur_turu} kur: {sonuc} TL"
+
+def hesapla_ve_göster(): 
+    döviz_çifti = döviz_çifti_var.get()
+    miktar = float(miktar_entry.get())
+    kur_turu = kur_turu_var.get()
+    
+    hesap = kur_hesapla(döviz_çifti, miktar, kur_turu)
+    sonuc_label.config(text = hesap)
+
+pencere = tk.Tk()
+pencere.title("döviz kuru hesaplayıcı")
+
+döviz_çifti_label = tk.Label(pencere, text="Döviz Çifti:")
+döviz_çifti_var = tk.StringVar(value="USD/TRY")
+döviz_çifti = tk.OptionMenu(pencere, döviz_çifti_var, 'USD/TRY', 'EURO/TRY', 'USD/EURO', 'PESO/TRY', 'STERLİN/TRY')
+
+miktar_label = tk.Label(pencere, text="Miktar:")
+miktar_entry = tk.Entry(pencere)
+
+kur_turu_label = tk.Label(pencere, text="Kur Türü:")
+kur_turu_var = tk.StringVar(value="alış")
+kur_turu_alış = tk.Radiobutton(pencere, text="Alış", variable=kur_turu_var, value="alış")
+kur_turu_satış = tk.Radiobutton(pencere, text="Satış", variable=kur_turu_var, value="satış")
+
+hesapla_button = tk.Button(pencere, text="Hesapla", command=hesapla_ve_göster)
+
+sonuc_label = tk.Label(pencere, text="Sonuç: ")
+sonuc_label.grid(row=5, column=0, columnspan=3, pady=10)
+
+döviz_çifti_label.grid(row=0, column=0, padx=10, pady=10)
+döviz_çifti.grid(row=0, column=1, padx=10, pady=10)
+
+miktar_label.grid(row=1, column=0, padx=10, pady=10)
+miktar_entry.grid(row=1, column=1, padx=10, pady=10)
+
+kur_turu_label.grid(row=2, column=0, padx=10, pady=10)
+kur_turu_alış.grid(row=2, column=1, padx=10, pady=10)
+kur_turu_satış.grid(row=2, column=2, padx=10, pady=10)
+
+hesapla_button.grid(row=3, column=0, columnspan=3, pady=10)
+
+sonuc_label.grid(row=4, column=0, columnspan=3, pady=10)
+
+pencere.mainloop()
