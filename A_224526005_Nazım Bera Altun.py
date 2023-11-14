@@ -41,13 +41,6 @@ lbl_hesapsonuc = Label(formm, text="........")
 e_miktar_giris = ttk.Entry(formm)
 
     
-    
-"""
-lbl_tlmiktar.pack()
-cmb_kursec.pack()
-btn_bos.pack()
-btn_hesapla.pack()
-"""
 
 lbl_tlmiktar.grid(row=0, column=0, padx=5, pady=5)
 e_miktar_giris.grid(row=0, column=1, padx=5, pady=5)
@@ -57,7 +50,4 @@ lbl_sonuc.grid(row=2, column=0, padx=5, pady=5)
 lbl_hesapsonuc.grid(row=2, column=1, padx=5, pady=5)
 btn_bos.grid(row=3, column=0, padx=5, pady=5)
 btn_hesapla.grid(row=3, column=1, padx=5, pady=5)
-
-
-
 formm.mainloop()
